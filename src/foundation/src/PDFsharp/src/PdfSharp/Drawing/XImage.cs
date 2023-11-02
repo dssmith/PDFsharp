@@ -315,7 +315,7 @@ namespace PdfSharp.Drawing
         /// Creates an image from the specified stream.<br/>
         /// </summary>
         /// <param name="stream">The stream containing a BMP, PNG, JPEG, or PDF file.</param>
-        public static XImage FromStream(Stream stream)
+        public static XImage FromStream(Stream stream,XImageFormat format)
         {
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
@@ -329,7 +329,14 @@ namespace PdfSharp.Drawing
             //XImage image = new XImage(i);
             //image._stream = stream;
             //return image;
-            return new XImage(stream);
+            var i = new XImage
+            {
+                _format = format,
+                _stream = stream
+            };
+            
+            i._format = format;
+            return i;
         }
 #endif
 
