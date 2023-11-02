@@ -5,6 +5,7 @@
     <LangVersion>11.0</LangVersion>
     <RootNamespace>PdfSharp</RootNamespace>
     <DefineConstants>CORE;NET_ZIP</DefineConstants>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -33,5 +34,9 @@
     <EmbeddedResource Include="Resources\Messages.de.restext" />
     <EmbeddedResource Include="Resources\Messages.restext" />
   </ItemGroup>
+
+	<Target Name="NugetPackAutoVersioning" AfterTargets="Build">
+		<Exec Command="dotnet pack -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmm&quot;)) --no-build --configuration $(Configuration) --output ../nuget" />
+	</Target>
 
 </Project>

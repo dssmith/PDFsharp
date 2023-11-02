@@ -320,15 +320,16 @@ namespace PdfSharp.Drawing
             if (stream == null)
                 throw new ArgumentNullException(nameof(stream));
 
-            var ii = ImageImporter.GetImageImporter();
-            var i = ii.ImportImage(stream);
+            //var ii = ImageImporter.GetImageImporter();
+            //var i = ii.ImportImage(stream);
 
-            if (i == null)
-                throw new InvalidOperationException("Unsupported image format.");
+            //if (i == null)
+            //    throw new InvalidOperationException("Unsupported image format.");
 
-            XImage image = new XImage(i);
-            image._stream = stream;
-            return image;
+            //XImage image = new XImage(i);
+            //image._stream = stream;
+            //return image;
+            return new XImage(stream);
         }
 #endif
 
